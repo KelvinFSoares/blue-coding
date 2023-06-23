@@ -16,10 +16,3 @@ export function generateRacerWinLikelihoodCalculator() {
     }, delay);
   };
 }
-
-export function calculateOdd(odd) {
-  return odd;
-}
-
-const x = generateRacerWinLikelihoodCalculator();
-x(calculateOdd);

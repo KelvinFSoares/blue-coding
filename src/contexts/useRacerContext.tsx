@@ -24,7 +24,11 @@ export function RacersProvider({ children }: { children: React.ReactNode }) {
   };
 
   const sortRacerList = (nextRacers: Racer[]): Racer[] => {
-    return nextRacers.sort((a, b) => b.oddWin - a.oddWin);
+    return nextRacers.sort((a, b) => {
+      if (a.oddStatus === OddStatus.InProgress) return 1;
+      if (b.oddStatus === OddStatus.InProgress) return -1;
+      return b.oddWin - a.oddWin;
+    });
   };
 
   const updateRacerOddStatus = (racerIndex: number, newStatus: OddStatus) => {

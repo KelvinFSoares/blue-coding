@@ -1,6 +1,8 @@
 import { Racer } from '@/models/racer';
 import { FunctionComponent } from 'react';
 import SimpleText from '../atoms/SimpleText';
+import { oddBeautify } from '@/utils/utils';
+import { OddStatus } from '@/models/status';
 
 export interface RacerCardProps extends React.ComponentPropsWithoutRef<'div'> {
   racer: Racer;
@@ -27,9 +29,9 @@ const RacerCard: FunctionComponent<RacerCardProps> = ({ racer, ...rest }) => {
       <SimpleText size="md" color="black">
         Status: {racer.oddStatus}
       </SimpleText>
-      {racer.oddWin !== 0 && (
+      {racer.oddWin !== 0 && racer.oddStatus === OddStatus.Calculated && (
         <SimpleText size="md" color="black">
-          Odd Win: {racer.oddWin}
+          Odd Win: {`${oddBeautify(racer.oddWin)}%`}
         </SimpleText>
       )}
     </div>
